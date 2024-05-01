@@ -9,14 +9,13 @@ import static config.CustomAllureListener.withCustomTemplates;
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
-import static io.restassured.http.ContentType.JSON;
 import static io.restassured.http.ContentType.URLENC;
 import static org.hamcrest.Matchers.lessThan;
+import static tests.ui.BaseTest.BASE_URL;
 
 public class Specifications {
 
         private static final long MAX_RESPONSE_TIME = 4000L;
-        private static final String BASE_URL = System.getProperty("baseUrl", "https://demowebshop.tricentis.com");
 
         private static RequestSpecification baseRequestSpec(ContentType contentType) {
                 return with()
@@ -29,8 +28,6 @@ public class Specifications {
                     .baseUri(BASE_URL);
         }
 
-
-        public static RequestSpecification requestSpecJSON = baseRequestSpec(JSON);
         public static RequestSpecification requestSpecURLENC = baseRequestSpec(URLENC);
 
         public static ResponseSpecification baseResponseSpec(int statusCode) {
@@ -43,6 +40,4 @@ public class Specifications {
         }
 
         public static ResponseSpecification responseOk200 = baseResponseSpec(200);
-        public static ResponseSpecification responseWithStatusCode = baseResponseSpec(200);
-        public static ResponseSpecification responseFound302 = baseResponseSpec(302);
 }
